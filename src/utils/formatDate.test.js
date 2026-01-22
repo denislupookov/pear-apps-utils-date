@@ -43,4 +43,19 @@ describe('formatDate utility', () => {
     const date = new Date('2023-05-15')
     expect(formatDate(date, 'ddd-dd-mmm-yy', ' ')).toBe('Mon 15 May 23')
   })
+
+  test('handles time components (exact time)', () => {
+    const date = new Date('2023-05-15T14:30:45')
+    expect(formatDate(date, 'hh-mi-ss', ':')).toBe('14:30:45')
+  })
+
+  test('handles midnight', () => {
+    const date = new Date('2023-05-15T00:00:00')
+    expect(formatDate(date, 'hh-mi-ss', ':')).toBe('00:00:00')
+  })
+
+  test('handles mixed case format strings for time', () => {
+    const date = new Date('2023-05-15T16:20:10')
+    expect(formatDate(date, 'HH-MI-SS', ':')).toBe('16:20:10')
+  })
 })
