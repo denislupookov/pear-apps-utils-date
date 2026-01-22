@@ -8,6 +8,9 @@
  *   - 'ddd' for the abbreviated weekday name (e.g., 'Mon')
  *   - 'mm' for the month (two digits)
  *   - 'mmm' for the abbreviated month name (e.g., 'Jan')
+ *   - 'hh' for hours (24-hour format, two digits)
+ *   - 'mi' for minutes (two digits)
+ *   - 'ss' for seconds (two digits)
  * @param {string} separator
  * @returns {string}
  */
@@ -27,6 +30,9 @@ export const formatDate = (
   const day = String(date.getDate()).padStart(2, '0')
   const dayOfWeek = date.toLocaleString('en-US', { weekday: 'short' })
   const monthName = date.toLocaleString('en-US', { month: 'short' })
+  const hours = String(date.getHours()).padStart(2, '0')
+  const minutes = String(date.getMinutes()).padStart(2, '0')
+  const seconds = String(date.getSeconds()).padStart(2, '0')
 
   const dateComponents = {
     yyyy: year,
@@ -34,7 +40,10 @@ export const formatDate = (
     mm: month,
     dd: day,
     ddd: dayOfWeek,
-    mmm: monthName
+    mmm: monthName,
+    hh: hours,
+    mi: minutes,
+    ss: seconds
   }
 
   const formatArray = format.toLowerCase().split('-')
